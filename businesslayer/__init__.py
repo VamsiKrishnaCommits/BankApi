@@ -1,8 +1,7 @@
 import json
 import random
 import secrets
-from urllib import response
-from flask import Flask, render_template, request, flash
+from flask import Flask, request
 import requests
 from databaselayer import db, get_balanceDB, add_userDB, get_detailsDB, update_balanceDB
 
@@ -14,9 +13,6 @@ app.secret_key = "vamsi"
 db.init_app(app)
 
 
-@app.route("/")
-def index():
-    return {"message": "Welcome to the bank"}, 200
 
 # API to create a new user and add it to the database
 @app.route("/user", methods=["POST", "GET"])
@@ -69,22 +65,22 @@ def transactionDebit():
     except:
         return json.dumps({"status": "error"}), 400
 
-    balance = get_balanceDB(Sacno, Sifsc)
-    if balance is None:
+    sbalance = get_balanceDB(Sacno, Sifsc)
+    if sbalance is None:
         return {"Error": "Sender Account Number or IFSC Number is incorrect"}, 400
 
     rbalance = get_balanceDB(Racno, Rifsc)
     if rbalance is None:
         return {"Error": "Receiver Account Number or IFSC Number is incorrect"}, 400
 
-    if balance >= amount:
+    if sbalance >= amount:
         if (
-            update_balanceDB(Sacno, Sifsc, get_balanceDB(Sacno, Sifsc) - amount)
+            update_balanceDB(Sacno, Sifsc, sbalance - amount)
             is False
         ):
             return {"Error": "Something went wrong"}, 400
         if (
-            update_balanceDB(Racno, Rifsc, get_balanceDB(Racno, Rifsc) + amount)
+            update_balanceDB(Racno, Rifsc, rbalance + amount)
             is False
         ):
             return {"Error": "Something went wrong"}, 400
