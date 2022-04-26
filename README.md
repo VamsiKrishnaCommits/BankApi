@@ -1,6 +1,6 @@
 # BankApi
 
-The code of this projected is seperated into two folders : DatabaseLayer , BusinessLayer
+The code of this project is seperated into two folders : DatabaseLayer , BusinessLayer
 
 This is to ensure easy maintanence and migration to a different database becomes seamless if the business logic is not aware of the 
   kind of database that is being used. In a nutshell , the database is abstracted from the business logic.
@@ -14,7 +14,7 @@ Accepts only JSON format to process requests for simplicity
 There are 4 APIs  -
 1) "/user" - POST - used to create a user - { "name" : "xxx" , "phone" : "XXX" , "address" : "xxx" } 
 
-A nominal amount of 1000 INR is credit for every account created
+    A nominal amount of 1000 INR is credit for every account created
 
 2) "/balance" - GET - used to fetch available funds - {"acno" : "xxx" , "ifsc" : "xxx"}
 
