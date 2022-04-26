@@ -12,7 +12,9 @@ The requirements asked are satisfied by using the APIs that are built
 Accepts only JSON format to process requests for simplicity
 
 There are 4 APIs  -
-1) "/user" - POST - used to create a user - { "name" : "xxx" , "phone" : "XXX" , "address" : "xxx" }
+1) "/user" - POST - used to create a user - { "name" : "xxx" , "phone" : "XXX" , "address" : "xxx" } 
+
+A nominal amount of 1000 INR is credit for every account created
 
 2) "/balance" - GET - used to fetch available funds - {"acno" : "xxx" , "ifsc" : "xxx"}
 
